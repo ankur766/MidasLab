@@ -9,6 +9,7 @@ import io.temporal.workflow.Workflow;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,9 +17,9 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements AccountService {
   private final Logger logger = Workflow.getLogger(AccountServiceImpl.class);
 
-  private final WorkflowClient workflowClient;
+  @Autowired private final WorkflowClient workflowClient;
 
-  private final AccountRepository accountRepository;
+  @Autowired private final AccountRepository accountRepository;
 
   /**
    * createAccount creates a new account in the system or provider.
