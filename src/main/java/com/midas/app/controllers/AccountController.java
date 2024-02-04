@@ -1,5 +1,6 @@
 package com.midas.app.controllers;
 
+import com.midas.app.constant.Constants;
 import com.midas.app.mappers.Mapper;
 import com.midas.app.models.Account;
 import com.midas.app.services.AccountService;
@@ -33,7 +34,7 @@ public class AccountController implements AccountsApi {
    * @return User account created (status code 201)
    */
   @Override
-  @PostMapping(value = "/accounts")
+  @PostMapping(value = Constants.ACCOUNTS)
   @Operation(description = "API to create a user account in DB + Stripe")
   public ResponseEntity<AccountDto> createUserAccount(CreateAccountDto createAccountDto) {
     logger.info("Creating account for user with email: {}", createAccountDto.getEmail());
@@ -55,7 +56,7 @@ public class AccountController implements AccountsApi {
    * @return List of user accounts (status code 200)
    */
   @Override
-  @GetMapping(value = "/accounts")
+  @GetMapping(value = Constants.ACCOUNTS)
   @Operation(description = "API to fetch all the user accounts")
   public ResponseEntity<List<AccountDto>> getUserAccounts() {
     logger.info("Retrieving all accounts");

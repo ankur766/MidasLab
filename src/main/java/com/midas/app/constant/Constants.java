@@ -1,4 +1,4 @@
-package com.midas.app;
+package com.midas.app.constant;
 
 public class Constants {
 
@@ -9,4 +9,5 @@ public class Constants {
   public static final String EMAIL = "email";
   public static final String NAME = "name";
   public static final String STRIPE = "stripe";
+  public static final String ACCOUNTS = "/accounts";
 }

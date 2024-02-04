@@ -1,6 +1,6 @@
 package com.midas.app.providers.external.stripe;
 
-import com.midas.app.Constants;
+import com.midas.app.constant.Constants;
 import com.midas.app.models.Account;
 import com.midas.app.providers.payment.CreateAccount;
 import com.midas.app.providers.payment.PaymentProvider;
