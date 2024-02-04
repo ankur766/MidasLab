@@ -4,100 +4,21 @@
 
 Backend Engineer Code Assessment - **MidasAssignment**
 
-## Setup
+## How to Run and What's added
 
-### Pre-requisities
-
-To run the application you would require:
-
-- [Java](https://www.azul.com/downloads/#zulu)
-- [Temporal](https://docs.temporal.io/cli#install)
-- [Docker](https://docs.docker.com/get-docker/)
-- [Stripe API Keys](https://stripe.com/docs/keys)
-
-### On macOS:
-
-First, you need to install Java 21 or later. You can download it from [Azul](https://www.azul.com/downloads/#zulu) or
-use [SDKMAN](https://sdkman.io/).
-
-```sh
-brew install --cask zulu21
-```
-
-You can install Temporal using Homebrew
-
-```sh
-brew install temporal
-```
-
-or visit [Temporal Installation](https://docs.temporal.io/cli#install) for more information.
-
-You can install Docker using Homebrew
-
-```sh
-brew install docker
-```
-
-or visit [Docker Installation](https://docs.docker.com/get-docker/) for more information.
-
-### Other platforms
-
-Please check the official documentation for the installation of Java, Temporal, and Docker for your platform.
-
-### Stripe API Keys
-
-Sign up for a Stripe account and get your API keys from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys).
-Then in `application.properties` file add the following line with your secret key.
-
-```properties
-stripe.api-key=sk_test_51J3j
-```
-
-## Run
-
-You are required to first start the temporal server using the following command
-
-```sh
-temporal server start-dev
-```
-
-and then run the application using the following command or using your IDE.
-
-```sh
-./gradlew bootRun
-```
-
-### Other commands
-
-#### Lint
-To run lint checks, use the following command
-
-```sh
-./gradlew sonarlintMain
-```
-
-#### Code Formatting
-To format the code, use the following command
-
-```sh
-./gradlew spotlessApply
-```
-
-## Guides
-
-The following guides illustrate how to use some features concretely:
-
-- [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-- [Temporal Quick Start](https://docs.temporal.io/docs/quick-start)
-- [Temporal Java SDK Quick Guide](https://docs.temporal.io/dev-guide/java)
-- [Stripe Quick Start](https://stripe.com/docs/quickstart)
-- [Stripe Java SDK](https://stripe.com/docs/api/java)
-
-### Docker Compose support
-
-This project contains a Docker Compose file named `compose.yaml`.
-In this file, the following services have been defined:
-
-- postgres: [`postgres:latest`](https://hub.docker.com/_/postgres)
-
-Please review the tags of the used images and set them to the same as you're running in production.
+1. Start the temporal
+2. Run the spring boot application
+3. APIs are documented in Swagger UI. Once the application is up, swagger UI can be accessed from 127.0.0.1:8080/swagger-ui/index.html
+   1. springdoc-openapi-starter-webmvc-ui dependency is added for Swagger
+   2. SwaggerConfig class is providing the configuration of it
+   3. APIs can be tested from Swagger UI
+4. Workflow Implementations are added
+5. Tempoarl Configuration class is added in configration directory
+6. Account Activity implementation class is added for temporal workflow activity
+7. AccountController is updated with GetMapping & PostMapping
+8. Account entity is updated. providerType and providerId feilds are added.
+9. Stripe api key has been added for test env
+10. StripePaymentProvider class is updated with implementation of Stripe api.
+    1. createAccount has the implementation of customer creation in Stripe
+    2. Stripe generated user ID is now saved in providerId field of Account table
+11. Autowiring of components are fixed in the code.
