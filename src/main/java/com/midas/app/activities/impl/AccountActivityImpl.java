@@ -2,25 +2,30 @@ package com.midas.app.activities.impl;
 
 import com.midas.app.activities.AccountActivity;
 import com.midas.app.models.Account;
+import com.midas.app.providers.external.stripe.StripeConfiguration;
+import com.midas.app.providers.external.stripe.StripePaymentProvider;
+import com.midas.app.providers.payment.CreateAccount;
+import com.midas.app.providers.payment.PaymentProvider;
 import com.stripe.exception.StripeException;
-import com.stripe.model.Customer;
 import io.temporal.activity.Activity;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountActivityImpl implements AccountActivity {
+
+  @Autowired StripeConfiguration stripeConfiguration;
+
   @Override
   public Account createPaymentAccount(Account account) {
     try {
-      Map<String, Object> mapOfAccount = new HashMap<>();
-      mapOfAccount.put("email", account.getEmail());
-      mapOfAccount.put(
-          "name", String.join(" ", List.of(account.getFirstName(), account.getLastName())));
-      Customer customer = Customer.create(mapOfAccount);
-      account.setId(UUID.fromString(customer.getId()));
-      return account;
+      PaymentProvider paymentProvider = new StripePaymentProvider(stripeConfiguration);
+      return paymentProvider.createAccount(
+          CreateAccount.builder()
+              .email(account.getEmail())
+              .firstName(account.getFirstName())
+              .lastName(account.getLastName())
+              .build());
     } catch (StripeException e) {
       throw Activity.wrap(e);
     }

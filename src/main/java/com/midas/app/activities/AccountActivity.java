@@ -3,8 +3,10 @@ package com.midas.app.activities;
 import com.midas.app.models.Account;
 import io.temporal.activity.ActivityInterface;
 import io.temporal.activity.ActivityMethod;
+import org.springframework.stereotype.Component;
 
 @ActivityInterface
+@Component
 public interface AccountActivity {
   /**
    * saveAccount saves an account in the data store.
