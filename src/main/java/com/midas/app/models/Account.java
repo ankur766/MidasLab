@@ -36,4 +36,10 @@ public class Account {
   @Column(name = "updated_at")
   @UpdateTimestamp
   private OffsetDateTime updatedAt;
+
+  @Column(name = "provider_type")
+  private String providerType;
+
+  @Column(name = "provider_id")
+  private String providerId;
 }

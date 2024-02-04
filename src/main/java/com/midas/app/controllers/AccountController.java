@@ -6,6 +6,7 @@ import com.midas.app.services.AccountService;
 import com.midas.generated.api.AccountsApi;
 import com.midas.generated.model.AccountDto;
 import com.midas.generated.model.CreateAccountDto;
+import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class AccountController implements AccountsApi {
    */
   @Override
   @PostMapping(value = "/accounts")
+  @Operation(description = "API to create a user account in DB + Stripe")
   public ResponseEntity<AccountDto> createUserAccount(CreateAccountDto createAccountDto) {
     logger.info("Creating account for user with email: {}", createAccountDto.getEmail());
 
@@ -54,6 +56,7 @@ public class AccountController implements AccountsApi {
    */
   @Override
   @GetMapping(value = "/accounts")
+  @Operation(description = "API to fetch all the user accounts")
   public ResponseEntity<List<AccountDto>> getUserAccounts() {
     logger.info("Retrieving all accounts");
 

@@ -1,5 +1,6 @@
 package com.midas.app.providers.external.stripe;
 
+import com.midas.app.Constants;
 import com.midas.app.models.Account;
 import com.midas.app.providers.payment.CreateAccount;
 import com.midas.app.providers.payment.PaymentProvider;
@@ -30,7 +31,7 @@ public class StripePaymentProvider implements PaymentProvider {
   /** providerName is the name of the payment provider */
   @Override
   public String providerName() {
-    return "stripe";
+    return Constants.STRIPE;
   }
 
   /**
@@ -42,9 +43,9 @@ public class StripePaymentProvider implements PaymentProvider {
   @Override
   public Account createAccount(CreateAccount details) throws StripeException {
     Map<String, Object> mapOfAccount = new HashMap<>();
-    mapOfAccount.put("email", details.getEmail());
+    mapOfAccount.put(Constants.EMAIL, details.getEmail());
     mapOfAccount.put(
-        "name", String.join(" ", List.of(details.getFirstName(), details.getLastName())));
+        Constants.NAME, String.join(" ", List.of(details.getFirstName(), details.getLastName())));
     Customer customer = Customer.create(mapOfAccount);
     details.setUserId(customer.getId());
 
@@ -52,6 +53,8 @@ public class StripePaymentProvider implements PaymentProvider {
         .firstName(details.getFirstName())
         .lastName(details.getLastName())
         .email(details.getEmail())
+        .providerType(providerName())
+        .providerId(details.getUserId())
         .build();
   }
 }
