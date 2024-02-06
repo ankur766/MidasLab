@@ -13,4 +13,9 @@ import org.springframework.stereotype.Component;
 public class StripeConfiguration {
 
   @NonNull private String apiKey;
+
+public String getApiKey() {
+	// TODO Auto-generated method stub
+	return apiKey;
+}
 }

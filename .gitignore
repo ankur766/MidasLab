@@ -47,3 +47,4 @@ replay_pid*
 log/
 application-local.properties
 **/application-local.properties
+/target/

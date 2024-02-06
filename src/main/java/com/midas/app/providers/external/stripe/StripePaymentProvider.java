@@ -49,7 +49,7 @@ public class StripePaymentProvider implements PaymentProvider {
     Customer customer = Customer.create(mapOfAccount);
     details.setUserId(customer.getId());
 
-    return Account.builder()
+    return ((Object) Account.builder())
         .firstName(details.getFirstName())
         .lastName(details.getLastName())
         .email(details.getEmail())

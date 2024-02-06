@@ -42,4 +42,83 @@ public class Account {
 
   @Column(name = "provider_id")
   private String providerId;
+
+public String getEmail() {
+	// TODO Auto-generated method stub
+	return email;
+}
+
+public UUID getId() {
+	return id;
+}
+
+public void setId(UUID id) {
+	this.id = id;
+}
+
+public String getFirstName() {
+	return firstName;
+}
+
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+
+public String getLastName() {
+	return lastName;
+}
+
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+public OffsetDateTime getCreatedAt() {
+	return createdAt;
+}
+
+public void setCreatedAt(OffsetDateTime createdAt) {
+	this.createdAt = createdAt;
+}
+
+public OffsetDateTime getUpdatedAt() {
+	return updatedAt;
+}
+
+public void setUpdatedAt(OffsetDateTime updatedAt) {
+	this.updatedAt = updatedAt;
+}
+
+public String getProviderType() {
+	return providerType;
+}
+
+public void setProviderType(String providerType) {
+	this.providerType = providerType;
+}
+
+public String getProviderId() {
+	return providerId;
+}
+
+public void setProviderId(String providerId) {
+	this.providerId = providerId;
+}
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
+@Override
+public String toString() {
+	return "Account [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+			+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", providerType=" + providerType
+			+ ", providerId=" + providerId + "]";
+}
+
+public static Object builder() {
+	// TODO Auto-generated method stub
+	return builder();
+}
+
+
 }

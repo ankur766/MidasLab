@@ -18,9 +18,9 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements AccountService {
   private final Logger logger = Workflow.getLogger(AccountServiceImpl.class);
 
-  @Autowired private final WorkflowClient workflowClient;
+  private final WorkflowClient workflowClient = null;
 
-  @Autowired private final AccountRepository accountRepository;
+  private final AccountRepository accountRepository = null;
 
   /**
    * createAccount creates a new account in the system or provider.
