@@ -1,3 +1,4 @@
+
 package com.midas.app.models;
 
 import jakarta.persistence.*;
